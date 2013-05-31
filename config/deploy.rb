@@ -1,3 +1,5 @@
+require 'bundler/capistrano'
+
 server "33.33.33.100", :app, :web, :db, :primary => true
 
 set :application, "demo200"
@@ -13,6 +15,18 @@ set :ssh_options, {:forward_agent => true, keys: ['~/.vagrant.d/insecure_private
 set :default_run_options, {:pty => true}
 
 set :use_sudo, false
+
+namespace :deploy do
+  desc <<-DESC
+   
+  DESC
+  task :default do
+    update
+    restart
+  end
+end
+
+
 
 
 
