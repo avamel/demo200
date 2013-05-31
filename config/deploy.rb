@@ -30,6 +30,8 @@ namespace :deploy do
     end
 end
 
-
+set :default_environment, {
+      'PATH' => "/opt/ruby-enterprise/bin/:$PATH"
+    }
 
 
