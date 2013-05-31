@@ -19,7 +19,7 @@ after "deploy:bundle_gems", "deploy:restart"
 
 namespace :deploy do
 	task :bundle_gems do
-		run "cd #{deploy_to}/current && /home/vagrant/.rvm/bin/bundle install vendor/gems"
+		run "cd #{deploy_to}/current && /home/vagrant/.rvm/gems/ruby-2.0.0-p195/bin/bundle install vendor/gems"
 	end
 	task :start do ; end 
 	task :stop do ; end
