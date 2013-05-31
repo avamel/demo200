@@ -1,4 +1,4 @@
-require 'bundler/capistrano'
+
 
 server "33.33.33.100", :app, :web, :db, :primary => true
 
@@ -17,6 +17,7 @@ set :default_run_options, {:pty => true}
 set :use_sudo, false
 
 after "deploy", "deploy:cleanup"
+
 namespace :deploy do
 	task :restart, roles: :app do
 		run "toch #{current_path}/tmp/restart.txt"
