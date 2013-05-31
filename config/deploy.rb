@@ -1,3 +1,5 @@
+require "bundler/capistrano"
+
 server "33.33.33.100", :app, :web, :db, :primary => true
 
 set :application, "demo200"
@@ -14,13 +16,13 @@ set :default_run_options, {:pty => true}
 
 set :use_sudo, false
 
-after "deploy", "deploy:bundle_gems"
-after "deploy:bundle_gems", "deploy:restart"
+after "deploy", "deploy:restart"# "deploy:bundle_gems"
+#after "deploy:bundle_gems", "deploy:restart"
 
 namespace :deploy do
-	task :bundle_gems do
-		run "cd #{deploy_to}/current && /home/vagrant/.rvm/gems/ruby-2.0.0-p195/bin/bundle install vendor/gems"
-	end
+#	task :bundle_gems do
+#		run "cd #{deploy_to}/current && /home/vagrant/.rvm/gems/ruby-2.0.0-p195/bin/bundle install vendor/gems"
+#	end
 	task :start do ; end 
 	task :stop do ; end
 	task :restart, :roles => :app, :except => { :no_release => true } do
