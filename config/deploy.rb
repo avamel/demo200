@@ -1,4 +1,5 @@
-require "bundler/capistrano"
+require 'rvm/capistrano'
+require 'bundler/capistrano'
 
 server "33.33.33.100", :app, :web, :db, :primary => true
 
@@ -29,9 +30,5 @@ namespace :deploy do
 		run "touch #{File.join(current_path,'tmp','restart.txt')}"
     end
 end
-
-set :default_environment, {
-      'PATH' => "$PATH"
-    }
 
 
