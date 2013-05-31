@@ -31,7 +31,7 @@ namespace :deploy do
 end
 
 set :default_environment, {
-      'PATH' => "/home/vagrant/.rvm/gems/ruby-2.0.0-p195/bin/:$PATH"
+      'PATH' => "$PATH"
     }
 
 
