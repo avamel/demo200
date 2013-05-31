@@ -1,5 +1,3 @@
-
-
 server "33.33.33.100", :app, :web, :db, :primary => true
 
 set :application, "demo200"
@@ -16,17 +14,18 @@ set :default_run_options, {:pty => true}
 
 set :use_sudo, false
 
-after "deploy", "deploy:cleanup"
+after "deploy", "deploy:bundle_gems"
+after "deploy:bundle_gems", "deploy:restart"
 
 namespace :deploy do
-	task :restart, roles: :app do
-		run "toch #{current_path}/tmp/restart.txt"
+	task :bundle_gems do
+		run "cd #{deploy_to}/current && bundle install vendor/gems"
 	end
-
-	task :symlink_config, roles: :app do
-		run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-	end
-	after "deploy:finalize_update", "deploy:symlink_config" 
+	task :start do ; end 
+	task :stop do ; end
+	task :restart, :roles => :app, :except => { :no_release => true } do
+		run "touch #{File.join(current_path,'tmp','restart.txt')}"
+    end
 end
 
 
