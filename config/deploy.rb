@@ -3,6 +3,7 @@ require 'bundler/capistrano'
 
 server "33.33.33.100", :app, :web, :db, :primary => true
 
+set :default_shell, "/bin/bash -l"
 set :rvm_type, :system
 set :application, "demo200"
 set :user, "vagrant"
