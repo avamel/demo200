@@ -19,14 +19,15 @@ set :default_run_options, {:pty => true}
 
 set :use_sudo, false
 
-after "deploy", "deploy:restart"
+#after "deploy", "deploy:restart"
 
 
 namespace :deploy do
 	task :start do ; end 
 	task :stop do ; end
 	task :restart, :roles => :app, :except => { :no_release => true } do
-		run "touch #{current_path}/tmp/restart.txt}"
+		#run "touch #{current_path}/tmp/restart.txt}"
+		run "sudo service nginx restart"
     end
 end
 
