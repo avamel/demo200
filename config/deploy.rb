@@ -23,11 +23,13 @@ set :use_sudo, false
 
 
 namespace :deploy do
-	task :start do ; end 
+	task :start do 
+		#run "touch #{current_release}/tmp/restart.txt}"
+	 end 
 	task :stop do ; end
-	task :restart, :roles => :app, :except => { :no_release => true } do
-		#run "touch #{current_path}/tmp/restart.txt}"
-		run "sudo service nginx restart"
+	task :restart, :roles => :app do #, :except => { :no_release => true } do
+		run "touch #{current_release}/tmp/restart.txt}"
+		#run "sudo service nginx restart"
     end
 end
 
