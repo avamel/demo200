@@ -3,10 +3,11 @@ require 'bundler/capistrano'
 
 server "33.33.33.100", :app, :web, :db, :primary => true
 
+set :rvm_type, :system
 set :application, "demo200"
 set :user, "vagrant"
 set :deploy_to, "/home/vagrant/demo200"
-set :deploy_via, :remote_cache
+set :deploy_via, :rsync_with_remote_cache
 set :scm, :git
 set :scm_user, "avamel"
 set :repository,  "https://github.com/avamel/demo200.git"
